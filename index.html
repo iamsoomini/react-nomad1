@@ -4,41 +4,58 @@
     <body>
         <div id="root"></div>
     </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
     <script type="text/babel">
-      
-      const root = document.getElementById('root');
-        function Title(){
-        return <h4 id="Title" onClick={() => console.log('mouse enter')}>
-            Hello its react
-            </h4>
-         };
-            
-        const Button = () => (
-            <button 
+        function Btn({text, changeValue}){
+            return(<button 
+            onClick={changeValue}
             style={{
-            backgroundColor: 'tomato',
-            }} 
-            onClick={() =>console.log('clicked')}>
-            Click me
-            </button>
-            );
+                backgroundColor: 'tomato',
+                color: 'white',
+                padding:"10px 20px",
+                border:0,
+                borderRadius:10,    
+                fontSize: "15px"     
+            }}>{text}
+            </button>)
+        }
+        Btn.prototype = {
+            text: PropTypes.string,
+            fontSize: PropTypes.number
+        }
 
-        const container = (
-            <div id="hi">
-                <Title />
-                <Button />
-            </div>
-            )
-        
-        React.createElement('div', null, [Title, Button]);
- 
-        ReactDOM.render(container, root);
+        function App(){
+            const [value, setValue] = React.useState("save changes");
+            const changeValue = () => {
+                setValue("Revert changes");
+            }
+            return(
+                <div>
+                    <Btn text={value} onClick={changeValue}/>
+                    <Btn text="Continue" />
+                </div>
+                )                                  
+            }
+                                
+      const root = document.getElementById('root');   
+        ReactDOM.render(<App />, root);      
     </script>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
