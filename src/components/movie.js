@@ -1,15 +1,15 @@
-import { ReactPropTypes } from "react";
+import { PropTypes } from "react";
 import { Link } from "react-router-dom";
 
-function movie({coverImage, title, summary, genres}){
+function movie({id, coverImage, title, summary, genres}){
 
     return (
      <div>
         <img src={coverImage} alt={title} />
         <h2>
-          <Link to ="/movie" >{title}</Link>
+          <Link to ={`/movie/${id}`} >{title}</Link>
         </h2>
-        <p>{summary}</p>
+        <p>{summary.length > 250? summary.slice(0,250)+"..." : summary}</p>
         <ul>{genres.map((g) => (
           <li key={g}>{g}</li>
         ))}</ul>
@@ -18,10 +18,11 @@ function movie({coverImage, title, summary, genres}){
 }
 
 // movie.propTypes = {
-//   coverImage: ReactPropTypes.string.isRequired,
-//   title: ReactPropTypes.string.isRequired,
-//   summary: ReactPropTypes.string.isRequired,
-//   genres: ReactPropTypes.arrayOf(ReactPropTypes.string).isRequired
+//   // id: PropTypes.number.isRequired,  
+//   coverImage: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   summary: PropTypes.string.isRequired,
+//   genres: PropTypes.arrayOf(PropTypes.string).isRequired
 // }
 
 export default movie;

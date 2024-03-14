@@ -1,19 +1,20 @@
-import{ createBrowserRouter, RouterProvider} from "react-router-dom"
+import{ BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 
 function App() {
- const router = createBrowserRouter([
-  {
-    path: "/",
-    element:<Home />,
-  },
-  {
-    path: "/movie",
-    element:<Detail />,
-  },
- ]);
- return <RouterProvider router={router} />;
-}
+ return (
+  <Router>
+    <Switch>
+      <Route path="/movie/:id">
+        <Detail />
+      </Route>
 
+      <Route path="/">
+        <Home />
+      </Route>  
+
+    </Switch>
+  </Router>  
+ )}
 export default App;
