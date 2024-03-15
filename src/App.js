@@ -6,6 +6,7 @@ function App() {
  return (
   <Router>
     <Switch>
+    {/* 여기서 설정한 변수명으로 넘겨준 값이 useParam() 넘어옴. */}
       <Route path="/movie/:id">
         <Detail />
       </Route>
